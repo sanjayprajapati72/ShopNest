@@ -14,7 +14,8 @@ const Home = () => {
         const fetchProducts = async () => {
             try {
                 // const res = await fetch("/api/products");
-                const res = await fetch(`${ API_URL}/api/products`);
+                console.log(API_URL);
+                const res = await fetch(`${API_URL}/api/products`);
                 const data = await res.json();
 
                 setProducts(data.slice(0, 11));
