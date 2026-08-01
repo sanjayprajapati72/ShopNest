@@ -57,29 +57,32 @@
 // module.exports = sendEmail;
 
 
+
 const nodemailer = require("nodemailer");
 
 const sendEmail = async ({ email, subject, message }) => {
   try {
     console.log("========== EMAIL DEBUG ==========");
     console.log("To:", email);
-    console.log("Subject:", subject);
     console.log("EMAIL_USER:", process.env.EMAIL_USER);
-    console.log("EMAIL_PASS Exists:", !!process.env.EMAIL_PASS);
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      family: 4, // Force IPv4
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
 
-    // Verify Gmail Connection
     await transporter.verify();
-    console.log("✅ Gmail SMTP Connected Successfully");
+    console.log("✅ SMTP Connected");
 
-    // Send Email
     const info = await transporter.sendMail({
       from: `"ShopNest" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -87,18 +90,13 @@ const sendEmail = async ({ email, subject, message }) => {
       html: message,
     });
 
-    console.log("✅ Email Sent Successfully");
-    console.log("Message ID:", info.messageId);
+    console.log("✅ Email Sent");
+    console.log(info.messageId);
 
     return info;
   } catch (error) {
-    console.error("========== EMAIL ERROR ==========");
-    console.error("Message:", error.message);
-    console.error("Code:", error.code);
-    console.error("Response:", error.response);
-    console.error("Stack:", error.stack);
-
-    throw new Error(error.message);
+    console.error("EMAIL ERROR:", error);
+    throw error;
   }
 };
 
