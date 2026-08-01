@@ -68,6 +68,18 @@ const userSchema = new mongoose.Schema(
       default: null,
     },
 
+
+    // Magic Link Login
+    magicLoginToken: {
+      type: String,
+      default: null,
+    },
+
+    magicLoginExpire: {
+      type: Date,
+      default: null,
+    },
+
     role: {
       type: String,
       enum: ["user", "admin"],

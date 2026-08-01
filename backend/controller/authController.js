@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+
 // Generate JWT Token
 const genrateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -41,28 +43,33 @@ const registerUser = async (req, res) => {
 
         // Send Welcome Email
         try {
-            await sendEmail(
+            await sendEmail({
+
                 email,
-                "Welcome to ShopNest",
-                `
-                <h4>Hello ${name},</h4>
-
-                <p>Welcome to <b>ShopNest!</b></p>
-
-                <p>Thank you for joining us. Your account has been created successfully.</p>
-
-                <p>We're excited to have you as part of our community.</p>
-
-                <p>Explore a wide range of products and enjoy a seamless shopping experience.</p>
-
-                <p><b>Happy Shopping! 🛍️</b></p>
-
-                <br>
-
-                <p>Best Regards,</p>
-                <h4>The ShopNest Team</h4>
-                `
-            );
+            
+                subject: "Welcome to ShopNest",
+            
+                message: `
+                    <h4>Hello ${name},</h4>
+            
+                    <p>Welcome to <b>ShopNest!</b></p>
+            
+                    <p>Thank you for joining us. Your account has been created successfully.</p>
+            
+                    <p>We're excited to have you as part of our community.</p>
+            
+                    <p>Explore a wide range of products and enjoy a seamless shopping experience.</p>
+            
+                    <p><b>Happy Shopping! 🛍️</b></p>
+            
+                    <br>
+            
+                    <p>Best Regards,</p>
+            
+                    <h4>The ShopNest Team</h4>
+                `,
+            
+            });
 
             console.log("✅ Welcome email sent successfully.");
         } catch (emailError) {
@@ -218,11 +225,15 @@ const forgotPassword = async (req, res) => {
             <b>ShopNest Team</b>
         `;
 
-        await sendEmail(
-            user.email,
-            "Reset Your Password",
-            message
-        );
+        await sendEmail({
+
+            email: user.email,
+        
+            subject: "Reset Your Password",
+        
+            message,
+        
+        });
 
         res.json({
             message: "Password reset link sent to email."
@@ -295,11 +306,168 @@ const resetPassword = async (req, res) => {
 
 };
 
+// ===============================
+// Send Magic Link
+// ===============================
+
+const sendMagicLink = async (req, res) => {
+
+    const { email } = req.body;
+
+    try {
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+
+            return res.status(404).json({
+                message: "Please register first."
+            });
+
+        }
+
+        // Generate Token
+
+        const magicToken = crypto.randomBytes(32).toString("hex");
+
+        user.magicLoginToken = crypto
+            .createHash("sha256")
+            .update(magicToken)
+            .digest("hex");
+
+        user.magicLoginExpire =
+            Date.now() + 10 * 60 * 1000;
+
+        await user.save();
+
+        const magicLink =
+            `${FRONTEND_URL}/magic-login/${magicToken}`;
+
+            const message = `
+            <h2>ShopNest Magic Login</h2>
+            
+            <p>Hello <b>${user.name}</b>,</p>
+            
+            <p>
+            Click the secure link below to login without entering your password.
+            </p>
+            
+            <p>
+            <a href="${magicLink}">
+            ${magicLink}
+            </a>
+            </p>
+            
+            <p>
+            This link will expire in <b>10 minutes</b>.
+            </p>
+            
+            <p>
+            If you didn't request this login, you can safely ignore this email.
+            </p>
+            
+            <hr>
+            
+            <p>
+            Regards,<br/>
+            <b>ShopNest Team</b>
+            </p>
+            `;
+
+        await sendEmail({
+            email: user.email,
+            subject: "Magic Login - ShopNest",
+            message,
+        });
+
+        res.json({
+            message:
+                "Magic Link sent successfully."
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: error.message
+        });
+
+    }
+
+};
+
+
+
+// ===============================
+// Magic Login
+// ===============================
+
+const magicLogin = async (req, res) => {
+
+    try {
+
+        const hashedToken = crypto
+            .createHash("sha256")
+            .update(req.params.token)
+            .digest("hex");
+
+        const user = await User.findOne({
+
+            magicLoginToken: hashedToken,
+
+            magicLoginExpire: {
+                $gt: Date.now()
+            }
+
+        });
+
+        if (!user) {
+
+            return res.status(400).json({
+                message:
+                    "Magic Link is invalid or expired."
+            });
+
+        }
+
+        user.magicLoginToken = null;
+        user.magicLoginExpire = null;
+
+        await user.save();
+
+        res.json({
+
+            _id: user._id,
+
+            name: user.name,
+
+            email: user.email,
+
+            role: user.role,
+
+            token: genrateToken(user._id),
+
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+
+            message: error.message
+
+        });
+
+    }
+
+};
+
+
 module.exports = {
     registerUser,
     loginUser,
     forgotPassword,
     resetPassword,
+    sendMagicLink,
+    magicLogin,
     getUser,
     getUsers,
 };
