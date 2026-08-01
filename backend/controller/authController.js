@@ -187,7 +187,7 @@ const forgotPassword = async (req, res) => {
 
         await user.save();
 
-        const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
+        const resetUrl = `${FRONTEND_URL}/reset-password/${resetToken}`;
 
         // const resetUrl =
             // `http://localhost:5173/reset-password/${resetToken}`;

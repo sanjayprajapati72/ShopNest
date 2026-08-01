@@ -46,7 +46,7 @@ const Login = () => {
 
       <form className="auth-form login-form" onSubmit={handleSubmit}>
 
-        <h2>Welcome Back 👋</h2>
+        <h2>Welcome Back</h2>
 
         <p className="auth-subtitle">
           Sign in to continue shopping
