@@ -1,0 +1,215 @@
+ .hero-banner {
+     background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.2), transparent 6);
+     /* background: linear-gradient(135deg, #ff7b00, #ff5100); */
+     color: white;
+     padding: 100px 30px;
+     text-align: center;
+     border-radius: 16px;
+     margin-bottom: 50px;
+     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+     /* box-shadow: 0 10px 40px rgba(0, 0, 0, .35); */
+     border: 1px solid rgba(255, 255, 255, 0.05);
+     position: relative;
+     overflow: hidden;
+
+ }
+
+ .hero-banner h1 {
+     font-size: 3.5rem;
+     margin-bottom: 20px;
+     text-shadow: 0, 4px 20px rgba(0, 0, 0, 0.8);
+     /* font-weight: 700; */
+
+ }
+
+ .hero-banner p {
+     font-size: 1.3rem;
+     color: #d4d4d8;
+
+ }
+
+ /* Grid and card */
+ /* .product-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+     gap: 30px;
+     margin-top: 30px;
+ } */
+
+
+ .product-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+     gap: 30px;
+     max-width: 1400px;
+     /* Grid ki maximum width */
+     width: 100%;
+     margin: 30px auto 0;
+     /* Center me le aayega */
+     padding: 0 20px;
+     /* Left-right spacing */
+ }
+
+ .product-card {
+     background: #18181b;
+     border-radius: 12px;
+     overflow: hidden;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+     border: 1px solid rgba(255, 255, 255, 0.03);
+     display: flex;
+     flex-direction: column;
+     position: relative;
+     padding: 10px;
+     min-height: 350px;
+
+
+ }
+
+ .product-card:hover {
+     transform: translateY(-8px);
+     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(249, 115, 22, 0.3);
+ }
+
+ .product-image {
+     width: 100%;
+     height: 220px;
+     object-fit: cover;
+     transition: transform 0.5 ease;
+ }
+
+ .product-card:hover .product-image {
+     transform: scale(1.05);
+ }
+
+ .product-info {
+     padding: 15px;
+     text-align: left;
+     flex-grow: 1;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     background: linear-gradient(to top, #18181b 80%, transparent);
+     position: relative;
+     z-index: 2;
+
+ }
+
+ .product-info h3 {
+     font-size: 1.1rem;
+     margin-bottom: 10px;
+     color: #fff;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+
+ }
+
+ .price {
+     font-size: 22px;
+     font-weight: 700;
+     color: #f97316;
+     margin-bottom: 15px;
+ }
+
+ /* search bar */
+
+ .search-bar {
+     width: 100%;
+     max-width: 500px;
+     padding: 15px 20px;
+     margin-bottom: 30px;
+     background: #18181b;
+     border: 1px solid #27272a;
+     border-radius: 8px;
+     color: #fafafa;
+     font-size: 16px;
+     transition: all 0.3s ease;
+     outline: none;
+ }
+
+ .search-bar:focus {
+     border-color: #f97316;
+     box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+
+ }
+
+ /* Detals page */
+ .product-detail {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 50px;
+     background: #18181b;
+     padding: 40px;
+     border-radius: 16px;
+     border: 1px solid #27272a;
+ }
+
+ .detail-image {
+     width: 100%;
+     border-radius: 12px;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+     object-fit: cover;
+
+ }
+
+ .detail-info {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+
+ }
+
+ .detail-info h2 {
+     font-size: 2.5rem;
+     margin-bottom: 15px;
+ }
+
+ .detail-price {
+     font-size: 2rem;
+     color: #f97316;
+     font-weight: 700;
+     margin-bottom: 25px;
+ }
+
+ .detail-price p {
+     color: #a1a1aa;
+     line-height: 1.7;
+     font-size: 1.1rem;
+     margin-bottom: 30px;
+
+ }
+
+ @media (max-width: 900px) {
+     .product-detail {
+         grid-template-columns: 1fr;
+     }
+
+ }
+
+ /* ================= NEW UPDATE ================= */
+ /* View Details Button */
+
+ .view-details-button {
+     display: block;
+     width: 100%;
+     margin-top: 10px;
+     padding: 8px 0;
+     background: #f97316;
+     color: #fff;
+     text-decoration: none;
+     text-align: center;
+     border-radius: 8px;
+     font-size: 14px;
+     font-weight: 600;
+     transition: 0.3s;
+     cursor: pointer;
+     user-select: none;
+     transition: all 0.25s ease;
+ }
+
+ .view-details-button:hover {
+     background: #ea580c;
+ }
+
+ /* ================= END UPDATE ================= */

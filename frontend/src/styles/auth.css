@@ -1,0 +1,506 @@
+
+
+  /* ===============================
+   AUTH PAGE
+================================ */
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ 
+ .auth-container {
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-top: 140px;
+ 
+   padding: 30px 20px;
+ 
+   background:
+     radial-gradient(circle at top left,
+       rgba(249,115,22,.12),
+       transparent 28%),
+     radial-gradient(circle at bottom right,
+       rgba(249,115,22,.08),
+       transparent 30%),
+     #09090b;
+ }
+ 
+ /* ===============================
+    LOGIN CARD
+ ================================ */
+ 
+ .auth-form {
+ 
+   width: 100%;
+   max-width: 460px;
+   background: #18181b;
+   border: 1px solid #2d2d2d;
+   border-radius: 22px;
+   padding:28px 32px;
+   margin-top:49px;   /* 👈 ye line add karo */
+   box-shadow:
+     0 20px 60px rgba(0,0,0,.55),
+     0 0 40px rgba(249,115,22,.08);
+ }
+ 
+ /* ===============================
+    HEADER
+ ================================ */
+ 
+ .login-header{
+ 
+   text-align:center;
+   margin-bottom:30px;
+ }
+ 
+ .brand{
+ 
+   font-size:38px;
+ 
+   color:#fff;
+ 
+   font-weight:800;
+ 
+   margin-bottom:10px;
+ }
+ 
+ .brand span{
+ 
+   color:#f97316;
+ }
+ 
+ .login-header h2{
+ 
+   color:#fff;
+   font-size:32px;
+   margin-bottom:10px;
+ }
+ 
+ .login-header p{
+ 
+   color:#a1a1aa;
+   font-size:15px;
+ }
+ 
+ /* ===============================
+    LABEL
+ ================================ */
+ 
+ .auth-label{
+ 
+   display:block;
+   margin-bottom:10px;
+   color:#fff;
+   font-weight:600;
+ }
+ 
+ /* ===============================
+    INPUT BOX
+ ================================ */
+ 
+ .input-box{
+ 
+   position:relative;
+   margin-bottom:22px;
+ }
+ 
+ .input-box input{
+ 
+   width:100%;
+   height:56px;
+   padding:0 48px;
+   border-radius:12px;
+   border:1px solid #333;
+   background:#09090b;
+   color:#fff;
+   font-size:15px;
+   transition:.3s;
+ }
+ 
+ .input-box input:focus{
+ 
+   outline:none;
+ 
+   border-color:#f97316;
+ 
+   box-shadow:0 0 0 3px rgba(249,115,22,.15);
+ }
+ 
+ .input-icon{
+ 
+   position:absolute;
+ 
+   top:50%;
+ 
+   left:16px;
+ 
+   transform:translateY(-50%);
+ 
+   color:#888;
+ 
+   font-size:20px;
+ }
+ 
+ .eye-icon{
+ 
+   position:absolute;
+ 
+   top:50%;
+ 
+   right:16px;
+ 
+   transform:translateY(-50%);
+ 
+   color:#888;
+ 
+   font-size:18px;
+ 
+   cursor:pointer;
+ }
+ 
+ /* ===============================
+    REMEMBER
+ ================================ */
+ 
+ .remember-row{
+ 
+   display:flex;
+ 
+   justify-content:space-between;
+ 
+   align-items:center;
+ 
+   margin-bottom:33px;
+ }
+ 
+ .remember-label{
+ 
+   display:flex;
+ 
+   align-items:center;
+ 
+   gap:8px;
+ 
+   color:#d4d4d8;
+ 
+   font-size:14px;
+ }
+ 
+ .remember-label input{
+ 
+   accent-color:#f97316;
+ }
+ 
+ .forgot-link{
+ 
+   color:#f97316;
+ 
+   text-decoration:none;
+ 
+   font-size:14px;
+ 
+   font-weight:600;
+   transition:0.3s;
+ }
+ 
+ .forgot-link:hover{
+  text-decoration:none;
+  color:#fb923c;
+ 
+   /* text-decoration:underline; */
+ }
+ 
+ /* ===============================
+    LOGIN BUTTON
+ ================================ */
+ 
+ .login-btn{
+ 
+   width:100%;
+   height:45px;
+   border:none;
+   border-radius:12px;
+   background:#f97316;
+   color:#fff;
+   font-size:15px;
+   font-weight:800;
+   cursor:pointer;
+   transition:.3s;
+ }
+ 
+ .login-btn:hover{
+ 
+   background:#ea580c;
+ 
+   transform:translateY(-2px);
+ 
+   box-shadow:0 12px 25px rgba(249,115,22,.35);
+ }
+ 
+ /* ===============================
+    DIVIDER
+ ================================ */
+ 
+ /* .divider{
+ 
+   display:flex;
+ 
+   align-items:center;
+ 
+   gap:15px;
+ 
+   margin:32px 0;
+ }
+  */
+
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    margin:28px 0;
+ }
+ 
+ .divider::before,
+ .divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#333;
+ }
+ 
+ .divider span{
+    color:#888;
+    font-size:14px;
+    font-weight:600;
+ }
+/* ========================= */
+ 
+ 
+ .divider p{
+ 
+   color:#888;
+ 
+   font-size:14px;
+ }
+ 
+ /* ===============================
+    MAGIC BUTTON
+ ================================ */
+ 
+ .social-btn{
+ 
+   width:100%;
+ 
+   height:45px;
+ 
+   border-radius:12px;
+ 
+   border:1px solid #333;
+ 
+   background:#202020;
+ 
+   color:#fff;
+ 
+   display:flex;
+ 
+   justify-content:center;
+ 
+   align-items:center;
+ 
+   gap:10px;
+ 
+   font-size:15px;
+ 
+   font-weight:600;
+ 
+   cursor:pointer;
+ 
+   transition:.3s;
+ }
+ 
+ .social-btn:hover{
+ 
+   border-color:#f97316;
+ 
+   background:#262626;
+ 
+   transform:translateY(-2px);
+ }
+ 
+ .social-icon{
+ 
+   font-size:22px;
+ 
+   color:#f97316;
+ }
+ 
+ /* ===============================
+    REGISTER
+ ================================ */
+ 
+ .register-text{
+ 
+   text-align:center;
+ 
+   color:#a1a1aa;
+ 
+   margin-top:28px;
+ 
+   font-size:15px;
+ }
+ 
+ /* .register-text a{
+ 
+   color:#f97316;
+ 
+   margin-left:6px;
+ 
+   text-decoration:none;
+ 
+   font-weight:700;
+ } */
+
+ .register-text a{
+  color:#f97316;
+  text-decoration:none;
+  font-weight:700;
+}
+
+.register-text a:hover{
+  color:#fb923c;
+}
+ 
+ .register-text a:hover{
+ 
+   text-decoration:underline;
+ }
+ 
+ /* ===============================
+    MOBILE
+ ================================ */
+ 
+ @media(max-width:600px){
+ 
+ .auth-form{
+ 
+ padding:28px 20px;
+ 
+ border-radius:18px;
+ }
+ 
+ .brand{
+ 
+ font-size:32px;
+ }
+ 
+ .login-header h2{
+ 
+ font-size:26px;
+ }
+ 
+ .remember-row{
+ 
+ flex-direction:column;
+ 
+ align-items:flex-start;
+ 
+ gap:12px;
+ }
+ 
+ .login-btn{
+ 
+ height:50px;
+ }
+ 
+ .social-btn{
+ 
+ height:50px;
+ }
+ }
+
+
+ /* Register Page */
+
+.input-group{
+   display:flex;
+   flex-direction:column;
+   gap:8px;
+   margin-bottom:15px;
+}
+
+/* ye mai abhi add kiya  */
+
+.input-group input{
+  width:100%;
+  max-width:400px;
+  height:45px;
+  margin:0 auto;
+  padding:0 18px;
+  border:1px solid #333;
+  border-radius:12px;
+  background:#09090b;
+  color:#fff;
+  font-size:15px;
+  transition:.3s;
+}
+
+.input-group input:focus{
+  outline:none;
+  border-color:#f97316;
+  box-shadow:0 0 0 3px rgba(249,115,22,.15);
+}
+/* ============================= */
+.input-group label{
+
+ 
+   color:#f3f4f6;
+   font-size:14px;
+   font-weight:600;
+}
+
+.auth-subtitle{
+   color:#9ca3af;
+   text-align:center;
+   margin-top:-5px;
+   margin-bottom:25px;
+   font-size:15px;
+}
+
+.magic-link-btn{
+  width:100%;
+  height:40px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+
+  margin-top:15px;
+
+  border:1px solid #3a3a3a;
+  border-radius:12px;
+
+  background:transparent;
+
+  color:#fff;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+
+  transition:all .3s ease;
+  cursor:pointer;
+}
+
+.magic-link-btn:hover{
+  border-color:#f97316;
+  background:rgba(249,115,22,.08);
+  color:#fff;
+}
+.login-form{
+  margin-top: 60px;
+}
