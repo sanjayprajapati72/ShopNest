@@ -2,9 +2,19 @@ const Product = require("../models/product");
 const cloudinary = require("../config/cloudinary");
 
 // Get All Products
+// const getProduct = async (req, res) => {
+//   try {
+//     const products = await Product.find({});
+//     res.json(products);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
 const getProduct = async (req, res) => {
   try {
-    const products = await Product.find({});
+    const products = await Product.find({}).sort({ createdAt: -1 });
     res.json(products);
   } catch (error) {
     console.error(error);

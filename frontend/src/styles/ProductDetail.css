@@ -105,7 +105,8 @@
 
 .product-detail-wrapper {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 90px auto 0;   /* <-- yaha update */
+    /* margin: 0 auto; */
     padding: 20px;
     padding-bottom: 100px; /* Space for mobile fixed buttons */
 }
@@ -115,6 +116,7 @@
 /* ============================================ */
 
 .breadcrumb {
+    margin-top: 80px;      /* Navbar ke niche space */
     margin-bottom: 20px;
     color: #999;
     font-size: 14px;
@@ -133,12 +135,17 @@
 /* ========== PRODUCT DETAIL CONTAINER ======== */
 /* ============================================ */
 
-.product-detail {
+/* .product-detail {
     display: grid;
-    /* grid-template-columns: 1fr 1fr; */
     grid-template-columns: 520px 1fr;
     gap: 55px;
     align-items: flex-start;
+} */
+
+.product-detail{
+    display:grid;
+    grid-template-columns:minmax(0,480px) minmax(0,1fr);
+    gap:40px;
 }
 
 /* ============================================ */
@@ -215,9 +222,11 @@
 .thumbnail-container {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-top: 18px;
+    gap: 8px;
+    margin-top: 15px;
     flex-wrap: wrap;
+    overflow-x:auto;
+    padding-bottom:8px;
 }
 
 .thumbnail {
@@ -385,6 +394,11 @@
 .key-features-list {
     padding-left: 22px;
     margin: 0;
+    word-break:break-word;
+}
+.key-features-list li{
+    margin-bottom:6px;
+    line-height:22px;
 }
 
 /* ============================================ */
@@ -563,8 +577,9 @@
     }
 
     .detail-info .product-name {
-        order: 2;
-        font-size: 1.6rem;
+        /* order: 2; */
+        line-height:1.4;
+        font-size: 1.2rem;
     }
 
     .detail-info .product-price {
@@ -602,7 +617,11 @@
     }
 
     .main-image-wrapper {
-        aspect-ratio: 1;
+        /* aspect-ratio: 1; */
+        width:100%;
+        max-width:320px;
+        height:320px;
+        margin:auto;
     }
 
     .detail-image {
@@ -676,6 +695,11 @@
     .product-detail-wrapper {
         padding: 10px;
         padding-bottom: 100px;
+    }
+    .main-image-wrapper{
+        width:100%;
+        max-width:280px;
+        height:280px;
     }
 
     .product-detail {
@@ -797,6 +821,11 @@
     .product-detail-wrapper {
         padding: 8px;
         padding-bottom: 90px;
+    }
+    .main-image-wrapper{
+        width:100%;
+        max-width:240px;
+        height:240px;
     }
 
     .detail-info .product-name {

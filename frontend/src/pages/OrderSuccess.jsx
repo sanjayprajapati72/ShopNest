@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 const OrderSuccess = () => {
   const containerStyle = {
     maxWidth: "600px",
-    margin: "50px auto",
+    // margin: "50px auto",
+    margin: "140px auto 50px",
     padding: "50px 30px",
     background: "#18181b",
     borderRadius: "16px",

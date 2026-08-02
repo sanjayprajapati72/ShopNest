@@ -52,7 +52,8 @@ const Cart = () => {
       <div
         style={{
           maxWidth: "1200px",
-          margin: "25px auto 10px",
+          margin: "125px auto 10px", // 👈 25px ki jagah 60px
+          // margin: "25px auto 10px",
           padding: "0 20px",
           fontSize: "16px",
           fontWeight: "500",

@@ -165,7 +165,8 @@ const EditProduct = () => {
     return (
         <div style={{
             maxWidth: '600px',
-            margin: '40px auto',
+            margin:'100px auto 40px',
+            // margin: '40px auto',
             background: '#18181b',
             padding: '40px',
             borderRadius: '12px',

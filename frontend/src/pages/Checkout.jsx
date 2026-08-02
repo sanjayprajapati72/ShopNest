@@ -17,7 +17,7 @@ const Checkout = () => {
     const [loading, setLoading] = useState(false);
 
     const [address, setAddress] = useState({
-        fullName: "",
+        houseNumber: "",
         street: "",
         city: "",
         postalCode: "",
@@ -47,14 +47,28 @@ const Checkout = () => {
             "PAY_TEST_" + Date.now() + Math.floor(Math.random() * 1000);
 
         try {
+            console.log("Address Data:", address);
+            console.log("User:", user);
             // const saveOrderRes = await fetch("/api/orders", {
-                const saveOrderRes = await fetch(`${API_URL}/api/orders`, {
+            const saveOrderRes = await fetch(`${API_URL}/api/orders`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${user.token}`,
                 },
-                
+
+                // body: JSON.stringify({
+                //     items: cartItems.map(item => ({
+                //         productId: item._id,
+                //         quantity: item.qty,
+                //         price: item.price
+                //     })),
+                //     totalAmount: totalPrice,
+                //     address,
+                //     paymentId: fakePaymentId
+                // })
+
+
                 body: JSON.stringify({
                     items: cartItems.map(item => ({
                         productId: item._id,
@@ -62,7 +76,12 @@ const Checkout = () => {
                         price: item.price
                     })),
                     totalAmount: totalPrice,
-                    address,
+
+                    address: {
+                        ...address,
+                        fullName: user.name
+                    },
+
                     paymentId: fakePaymentId
                 })
 
@@ -97,13 +116,26 @@ const Checkout = () => {
 
                     <h3>Shipping Address</h3>
 
-                    <input
+                    {/* <input
                         type="text"
                         placeholder="Full Name"
                         required
                         value={address.fullName}
                         onChange={(e) =>
                             setAddress({ ...address, fullName: e.target.value })
+                        }
+                    /> */}
+
+                    <input
+                        type="text"
+                        placeholder="House No. / Flat No."
+                        required
+                        value={address.houseNumber}
+                        onChange={(e) =>
+                            setAddress({
+                                ...address,
+                                houseNumber: e.target.value,
+                            })
                         }
                     />
 
@@ -137,7 +169,7 @@ const Checkout = () => {
                         }
                     />
 
-                    <input
+                    {/* <input
                         type="text"
                         placeholder="Country"
                         required
@@ -145,7 +177,30 @@ const Checkout = () => {
                         onChange={(e) =>
                             setAddress({ ...address, country: e.target.value })
                         }
-                    />
+                    /> */}
+                    <select
+                        className="country-select"
+                        required
+                        value={address.country}
+                        onChange={(e) =>
+                            setAddress({
+                                ...address,
+                                country: e.target.value,
+                            })
+                        }
+                    >
+                        <option value="">Select Country</option>
+
+                        <option value="India">India</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Japan">Japan</option>
+                        <option value="China">China</option>
+                    </select>
 
                     <div className="Checkout-summary">
                         <h4>Total To Pay : ₹{totalPrice.toFixed(2)}</h4>

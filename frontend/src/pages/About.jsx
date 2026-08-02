@@ -1,11 +1,12 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const About = () => {
     const containerStyle = {
         maxWidth: "900px",
-        margin: "40px auto",
+        margin: "125px auto 10px",
+        // margin: "40px auto",
         padding: "40px",
         background: "#18181b",
         borderRadius: "16px",

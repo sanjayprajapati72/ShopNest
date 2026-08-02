@@ -151,7 +151,8 @@ const AdminOrders = () => {
 
 const containerStyle = {
     maxWidth: "1200px",
-    margin: "40px auto",
+    margin:'100px auto 40px',
+    // margin: "40px auto",
     padding: "30px",
     background: "#18181b",
     borderRadius: "12px",

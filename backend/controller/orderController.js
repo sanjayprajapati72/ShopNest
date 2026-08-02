@@ -9,6 +9,7 @@ const sendEmail = require("../utils/sendEmail");
 // ==============================
 const createOrder = async (req, res) => {
     try {
+        console.log(req.body);
         const { items, totalAmount, address, paymentId } = req.body;
 
 
@@ -90,32 +91,35 @@ const createOrder = async (req, res) => {
         // ==============================
         // Send Order Confirmation Email
         // ==============================
-        await sendEmail(
-            user.email,
-            "Order Confirmation - ShopNest",
-            `
-            <h4>Hello ${user.name},</h4>
+        // ==============================
+        // Send Order Confirmation Email
+        // ==============================
+        await sendEmail({
+            email: user.email,
+            subject: "Order Confirmation - ShopNest",
+            message: `
+        <h4>Hello ${user.name},</h4>
 
-            <p>Thank you for your purchase!</p>
+        <p>Thank you for your purchase!</p>
 
-            <p>Your order has been successfully placed and is now being processed.</p>
+        <p>Your order has been successfully placed and is now being processed.</p>
 
-            <p><b>Order ID:</b> ${order._id}</p>
-            <p><b>Payment ID:</b> ${order.paymentId}</p> 
-            <p><b>Product Name:</b> ${productNames}</p>           
-            <p><b>Total Amount:</b> ₹${order.totalAmount}</p>
-            <p><b>Shipping Address:</b> ${order.address}</p>
+        <p><b>Order ID:</b> ${order._id}</p>
+        <p><b>Payment ID:</b> ${order.paymentId}</p>
+        <p><b>Product Name:</b> ${productNames}</p>
+        <p><b>Total Amount:</b> ₹${order.totalAmount}</p>
+        <p><b>Shipping Address:</b> ${order.address}</p>
 
-            <p>We'll notify you once your order has been shipped.</p>
+        <p>We'll notify you once your order has been shipped.</p>
 
-            <p>Thank you for shopping with ShopNest.</p>
+        <p>Thank you for shopping with ShopNest.</p>
 
-            <br>
+        <br>
 
-            <p><b>Best Regards,</b></p>
-            <p>The ShopNest Team</p>
-            `
-        );
+        <p><b>Best Regards,</b></p>
+        <p>The ShopNest Team</p>
+    `,
+        });
 
         // ==============================
         // Send Success Response
@@ -289,25 +293,33 @@ const cancelOrder = async (req, res) => {
 
         const user = await User.findById(order.user);
 
-        await sendEmail(
-            user.email,
-            "Order Cancelled - ShopNest",
-            `
-    <h2>Hello ${user.name},</h2>
+        // ==============================
+        // Send Order Cancelled Email
+        // ==============================
+        await sendEmail({
+            email: user.email,
+            subject: "Order Cancelled - ShopNest",
+            message: `
+        <h2>Hello ${user.name},</h2>
 
-    <p>Your order has been cancelled successfully.</p>
+        <p>Your order has been <b>cancelled successfully</b>.</p>
 
-    <p><b>Order ID:</b> ${order._id}</p>
+        <p><b>Order ID:</b> ${order._id}</p>
 
-    <p><b>Total Amount:</b> ₹${order.totalAmount}</p>
+        <p><b>Total Amount:</b> ₹${order.totalAmount}</p>
 
-    <p>If this was a mistake, you can place a new order anytime.</p>
+        <p>If this was a mistake, you can place a new order anytime.</p>
 
-    <br>
+        <br>
 
-    <p>Thanks for shopping with ShopNest ❤️</p>
-    `
-        );
+        <p>Thank you for shopping with <b>ShopNest</b>. ❤️</p>
+
+        <br>
+
+        <p><b>Best Regards,</b></p>
+        <p>The ShopNest Team</p>
+    `,
+        });
 
 
 

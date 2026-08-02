@@ -54,7 +54,8 @@ const Disclaimer = () => {
       <div
         style={{
           maxWidth: "1200px",
-          margin: "20px 35px",
+          margin: "125px auto 10px", // 👈 25px ki jagah 60px
+          // margin: "20px 35px",
           padding:"0 20px",
           fontSize: "16px",
           fontWeight: "500",

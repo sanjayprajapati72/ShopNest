@@ -204,7 +204,8 @@ const Profile = () => {
 
 const containerStyle = {
   maxWidth: "1000px",
-  margin: "40px auto",
+  margin: "100px auto 40px", // 👈 Top se 100px gap
+  // margin: "40px auto",
   padding: "30px",
   background: "#18181b",
   borderRadius: "12px",

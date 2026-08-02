@@ -1,48 +1,144 @@
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+// const orderSchema = new mongoose.Schema({
+//     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+
+//     items: [
+//         {
+//             productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+//             quantity: { type: Number, required: true, min: 1 },
+//             price: { type: Number, required: true },
+//         }
+//     ],
+
+//     totalAmount: { type: Number, required: true },
+
+//     address: {
+//         fullName: { type: String, required: true },
+//         street: { type: String, required: true },
+//         city: { type: String, required: true },
+//         postalCode: { type: String, required: true },
+//         country: { type: String, required: true },
+//     },
+
+//     paymentId: { type: String },
+
+//     status: {
+//         type: String,
+//         //: ['pending', 'shipped', 'delivered'],
+//         enum:[
+//             'pending',
+//             'confirmed',
+//             'shipped',
+//             'delivered',
+//             'cancelled'
+//             ],
+//         default: 'pending'
+//     },
+//     cancelledAt: {
+//         type: Date,
+//         default: null,
+//     },
+
+// }, { timestamps: true });
+
+// module.exports = mongoose.model('Order', orderSchema);
+
+
+const mongoose = require("mongoose");
+
+const orderSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
 
     items: [
-        {
-            productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-            quantity: { type: Number, required: true, min: 1 },
-            price: { type: Number, required: true },
-        }
+      {
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        },
+
+        quantity: {
+          type: Number,
+          required: true,
+          min: 1,
+        },
+
+        price: {
+          type: Number,
+          required: true,
+        },
+      },
     ],
 
-    totalAmount: { type: Number, required: true },
+    totalAmount: {
+      type: Number,
+      required: true,
+    },
 
     address: {
-        fullName: { type: String, required: true },
-        street: { type: String, required: true },
-        city: { type: String, required: true },
-        postalCode: { type: String, required: true },
-        country: { type: String, required: true },
+      fullName: {
+        type: String,
+        required: true,
+      },
+
+      houseNumber: {
+        type: String,
+        required: true,
+      },
+
+      street: {
+        type: String,
+        required: true,
+      },
+
+      city: {
+        type: String,
+        required: true,
+      },
+
+      postalCode: {
+        type: String,
+        required: true,
+      },
+
+      country: {
+        type: String,
+        required: true,
+      },
     },
 
-    paymentId: { type: String },
+    paymentId: {
+      type: String,
+      default: "",
+    },
 
     status: {
-        type: String,
-        //: ['pending', 'shipped', 'delivered'],
-        enum:[
-            'pending',
-            'confirmed',
-            'shipped',
-            'delivered',
-            'cancelled'
-            ],
-        default: 'pending'
+      type: String,
+      enum: [
+        "pending",
+        "confirmed",
+        "shipped",
+        "delivered",
+        "cancelled",
+      ],
+      default: "pending",
     },
+
     cancelledAt: {
-        type: Date,
-        default: null,
+      type: Date,
+      default: null,
     },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-}, { timestamps: true });
-
-module.exports = mongoose.model('Order', orderSchema);
-
-
+module.exports = mongoose.model("Order", orderSchema);

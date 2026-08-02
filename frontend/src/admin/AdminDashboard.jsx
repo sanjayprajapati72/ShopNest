@@ -75,7 +75,7 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '1000px', margin: '0 auto' }}>
+        <div style={{ padding: '20px', maxWidth: '1000px', margin: '100px auto 0' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '5px' }}>
 
                 <img src="https://play-lh.googleusercontent.com/sgtyEM2UxKDkoPI38sD9Q6BXXbbeYiEDsMUoCmRumaIZKaWfkjTObv4_QVx1MMY7utpRAXkfxWwmNjq4bNVeHA=w600-h300-pc0xffffff-pd" alt=" logo" style={{ height: '40px', width: '40px', borderRadius: '8px', objectFit: 'cover', filter: 'drop-shadow(0 0px 10px rgb(249 115 22 0.3))' }} />
@@ -248,13 +248,13 @@ const AdminDashboard = () => {
 
                 <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
 
-                    <button className="btn" onClick={() => navigate('/admin/add-product')} style={{ background: '#3f3f46', width: '180px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}> +Add Product</button>
+                    <button className="btn" onClick={() => navigate('/admin/add-product')} style={{ background: '#3f3f46', width: '320px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}> +Add Product</button>
 
-                    <button className="btn" onClick={() => navigate('/admin/products')} style={{ background: '#3f3f46', width: '180px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}> Manage Products</button>
+                    <button className="btn" onClick={() => navigate('/admin/products')} style={{ background: '#3f3f46', width: '320px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}> Manage Products</button>
 
-                    <button className="btn" onClick={() => navigate('/admin/orders')} style={{ background: '#3f3f46', width: '180px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}> Manage Orders</button>
+                    <button className="btn" onClick={() => navigate('/admin/orders')} style={{ background: '#3f3f46', width: '320px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}> Manage Orders</button>
 
-                    <button className="btn" onClick={() => navigate('/admin/users')} style={{ background: '#3f3f46', width: '180px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}>Users Directory</button>
+                    <button className="btn" onClick={() => navigate('/admin/users')} style={{ background: '#3f3f46', width: '320px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}>Users Directory</button>
 
                     {/* <button className="btn" onClick={() => navigate('/admin/cancelled-orders')} style={{ background: '#3f3f46', width: '180px', height: '50px', borderRadius: '12px', fontSize: '15px', fontWeight: '600' }}>Cancelled Orders</button> */}
 

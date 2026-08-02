@@ -73,7 +73,7 @@ import API_URL from "../config/api";
  }; 
 
  const containerStyle ={
-    maxWidth:'1200px', margin:'40px auto',padding:'30px',background:'#18181b',borderRadius:'12px',border:'1px solid rgba(255,255,255,0.05)',color:'#fafafa'};
+    maxWidth:'1200px', margin:' 100px auto 40px',padding:'30px',background:'#18181b',borderRadius:'12px',border:'1px solid rgba(255,255,255,0.05)',color:'#fafafa'};
     const tableStyle = { width: "100%", borderCollapse: "collapse" };
     const rowStyle={borderBottom:'1px solid rgba(255,255,255,0.1)'};
     const thStyle ={padding:'15px', textAlign:'left',color:'#a1a1aa',fontSize:'0.9rem'};
