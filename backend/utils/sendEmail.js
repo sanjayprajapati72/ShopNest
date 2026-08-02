@@ -25,7 +25,8 @@ const sendEmail = async ({ email, subject, message }) => {
 
 
     const info = await transporter.sendMail({
-      from: process.env.EMAIL_FROM,
+      // from: process.env.EMAIL_FROM,
+      from: `"ShopNest" <${process.env.EMAIL_FROM}>`,
       to: email,
       subject,
       html: message,

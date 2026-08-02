@@ -46,9 +46,9 @@ const registerUser = async (req, res) => {
             await sendEmail({
 
                 email,
-            
+
                 subject: "Welcome to ShopNest",
-            
+
                 message: `
                     <h4>Hello ${name},</h4>
             
@@ -68,7 +68,7 @@ const registerUser = async (req, res) => {
             
                     <h4>The ShopNest Team</h4>
                 `,
-            
+
             });
 
             console.log("✅ Welcome email sent successfully.");
@@ -190,49 +190,42 @@ const forgotPassword = async (req, res) => {
         const resetUrl = `${FRONTEND_URL}/reset-password/${resetToken}`;
 
         // const resetUrl =
-            // `http://localhost:5173/reset-password/${resetToken}`;
+        // `http://localhost:5173/reset-password/${resetToken}`;
 
-    
+
         const message = `
             <h2>Password Reset Request</h2>
-
-            <p>Hello ${user.name},</p>
-
+        
+            <p>Hello <b>${user.name}</b>,</p>
+        
             <p>You requested to reset your password.</p>
-
+        
+            <p>Click the link below to reset your password:</p>
+        
             <p>
-                Click the button below to reset your password.
+                <a href="${resetUrl}">
+                    ${resetUrl}
+                </a>
             </p>
-
-            <a href="${resetUrl}"
-            style="
-            background:#f97316;
-            color:white;
-            padding:12px 20px;
-            text-decoration:none;
-            border-radius:8px;">
-            Reset Password
-            </a>
-
-            <br><br>
-
-            <p>This link will expire in 10 minutes.</p>
-
+        
+            <p><b>This link will expire in 10 minutes.</b></p>
+        
             <p>If you didn't request this, simply ignore this email.</p>
-
+        
             <br>
-
+        
+            <p>Regards,</p>
             <b>ShopNest Team</b>
         `;
 
         await sendEmail({
 
             email: user.email,
-        
+
             subject: "Reset Your Password",
-        
+
             message,
-        
+
         });
 
         res.json({
@@ -343,7 +336,7 @@ const sendMagicLink = async (req, res) => {
         const magicLink =
             `${FRONTEND_URL}/magic-login/${magicToken}`;
 
-            const message = `
+        const message = `
             <h2>ShopNest Magic Login</h2>
             
             <p>Hello <b>${user.name}</b>,</p>
