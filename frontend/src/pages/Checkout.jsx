@@ -3,7 +3,8 @@ import React, { useContext, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { clearCart } from "../redux/cartSlice";
+import { clearCart, clearBuyNowItem } from "../redux/cartSlice";
+// import { clearCart } from "../redux/cartSlice";
 import API_URL from "../config/api";
 import "../styles/checkout.css";
 
@@ -11,6 +12,7 @@ import "../styles/checkout.css";
 const Checkout = () => {
     const { user } = useContext(AuthContext);
     const cartItems = useSelector((state) => state.cart.cartItems);
+    const buyNowItem = useSelector((state) => state.cart.buyNowItem);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -24,13 +26,26 @@ const Checkout = () => {
         country: "",
     });
 
-    const totalPrice = cartItems.reduce(
-        (acc, item) => acc + item.price * item.qty,
-        0
-    );
+    // const totalPrice = cartItems.reduce(
+    //     (acc, item) => acc + item.price * item.qty,
+    //     0
+    // );
+
+    const checkoutItems = buyNowItem ? [buyNowItem] : cartItems;
+
+const totalPrice = checkoutItems.reduce(
+    (acc, item) => acc + Number(item.price) * Number(item.qty),
+    0
+);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (checkoutItems.length === 0) {
+            alert("Your cart is empty");
+            navigate("/cart");
+            return;
+        }
 
         if (!user) {
             alert("Please login first");
@@ -49,6 +64,9 @@ const Checkout = () => {
         try {
             console.log("Address Data:", address);
             console.log("User:", user);
+            console.log("Checkout Items:", checkoutItems);
+            console.log("Total Price:", totalPrice);
+        
             // const saveOrderRes = await fetch("/api/orders", {
             const saveOrderRes = await fetch(`${API_URL}/api/orders`, {
                 method: "POST",
@@ -70,11 +88,12 @@ const Checkout = () => {
 
 
                 body: JSON.stringify({
-                    items: cartItems.map(item => ({
+                    items: checkoutItems.map((item) => ({
                         productId: item._id,
                         quantity: item.qty,
-                        price: item.price
+                        price: item.price,
                     })),
+                    
                     totalAmount: totalPrice,
 
                     address: {
@@ -94,9 +113,13 @@ const Checkout = () => {
 
             if (saveOrderRes.ok) {
                 dispatch(clearCart());
+                dispatch(clearBuyNowItem());
+            
                 alert("Payment Successful");
+            
                 navigate("/ordersuccess");
-            } else {
+            }
+            else {
                 alert("Order Saving Failed");
             }
         } catch (err) {
