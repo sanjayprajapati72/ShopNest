@@ -7,6 +7,7 @@ import { clearCart, clearBuyNowItem } from "../redux/cartSlice";
 // import { clearCart } from "../redux/cartSlice";
 import API_URL from "../config/api";
 import "../styles/checkout.css";
+import PaymentModal from "../components/PaymentModal";
 
 
 const Checkout = () => {
@@ -17,6 +18,8 @@ const Checkout = () => {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
+    const [paymentMethod, setPaymentMethod] = useState("");
 
     const [address, setAddress] = useState({
         houseNumber: "",
@@ -33,10 +36,10 @@ const Checkout = () => {
 
     const checkoutItems = buyNowItem ? [buyNowItem] : cartItems;
 
-const totalPrice = checkoutItems.reduce(
-    (acc, item) => acc + Number(item.price) * Number(item.qty),
-    0
-);
+    const totalPrice = checkoutItems.reduce(
+        (acc, item) => acc + Number(item.price) * Number(item.qty),
+        0
+    );
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,7 +69,7 @@ const totalPrice = checkoutItems.reduce(
             console.log("User:", user);
             console.log("Checkout Items:", checkoutItems);
             console.log("Total Price:", totalPrice);
-        
+
             // const saveOrderRes = await fetch("/api/orders", {
             const saveOrderRes = await fetch(`${API_URL}/api/orders`, {
                 method: "POST",
@@ -93,7 +96,7 @@ const totalPrice = checkoutItems.reduce(
                         quantity: item.qty,
                         price: item.price,
                     })),
-                    
+
                     totalAmount: totalPrice,
 
                     address: {
@@ -114,9 +117,9 @@ const totalPrice = checkoutItems.reduce(
             if (saveOrderRes.ok) {
                 dispatch(clearCart());
                 dispatch(clearBuyNowItem());
-            
+
                 alert("Payment Successful");
-            
+
                 navigate("/ordersuccess");
             }
             else {
@@ -228,7 +231,7 @@ const totalPrice = checkoutItems.reduce(
                     <div className="Checkout-summary">
                         <h4>Total To Pay : ₹{totalPrice.toFixed(2)}</h4>
 
-                        <button
+                        {/* <button
                             type="submit"
                             className="btn"
                             disabled={loading}
@@ -236,12 +239,36 @@ const totalPrice = checkoutItems.reduce(
                             {loading
                                 ? "Processing Payment..."
                                 : "Pay Now"}
+                        </button> */}
+                        <button
+                            type="button"
+                            className="btn"
+                            onClick={() => setShowPaymentModal(true)}
+                        >
+                            Pay Now
                         </button>
 
                     </div>
                 </form>
+
             </div>
+
+            <PaymentModal
+                isOpen={showPaymentModal}
+                onClose={() => {
+                    setShowPaymentModal(false);
+                    setPaymentMethod("");
+                }}
+                paymentMethod={paymentMethod}
+                setPaymentMethod={setPaymentMethod}
+
+                totalPrice={totalPrice}
+                onPaymentSuccess={handleSubmit}
+            />
+
         </div>
+
+
     );
 };
 
