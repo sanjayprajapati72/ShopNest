@@ -19,7 +19,7 @@ const AdminDashboard = () => {
 
             try {
                 // const res = await fetch('/api/analytics', {
-                    const res = await fetch(`${API_URL}/api/analytics`, {
+                const res = await fetch(`${API_URL}/api/analytics`, {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });
                 const data = await res.json();
@@ -136,7 +136,16 @@ const AdminDashboard = () => {
                     </div>
 
                     <div style={cardStyle}>
-                        <h4 style={{ color: '#a1a1aa', fontSize: '1rem' }}> Total Revenue</h4>
+                        <h4 style={{ color: '#a1a1aa', fontSize: '1rem' }}> Today's Revenue</h4>
+                        <p
+                            style={{
+                                color: "#888",
+                                fontSize: "13px",
+                                // marginTop: "2px",
+                            }}
+                        >
+                            Auto resets every day at 12:00 AM
+                        </p>
                         <div style={numberStyle}>₹{stats.totalRevenue.toFixed(2)}</div>
                     </div>
 

@@ -1,0 +1,389 @@
+/* .splash-screen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 999999;
+  }
+  
+  .splash-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ff7a00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff7a00;
+    animation: floatParticle linear infinite;
+  }
+  
+  @keyframes floatParticle {
+    0% {
+      transform: translateY(120vh) scale(0);
+      opacity: 0;
+    }
+  
+    20% {
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translateY(-20vh) scale(1);
+      opacity: 0;
+    }
+  }
+  
+  .logo-container {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+  }
+  
+  .logo-glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 122, 0, 0.25);
+    filter: blur(70px);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .shop-logo {
+    width: 140px;
+    filter: drop-shadow(0 0 30px rgba(255, 122, 0, 0.8));
+  }
+  
+  .shop-title {
+    margin-top: 18px;
+    font-size: 52px;
+    font-weight: 800;
+    color: white;
+  }
+  
+  .shop-title span {
+    color: #ff7a00;
+  }
+  
+  .shop-tagline {
+    margin-top: 12px;
+    color: #d4d4d4;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  
+  .icons {
+    position: absolute;
+    inset: 0;
+  }
+  
+  .float-icon {
+    position: absolute;
+    color: #ff7a00;
+    opacity: .8;
+  }
+  
+  .float-icon:nth-child(1) {
+    left: -90px;
+    top: -20px;
+  }
+  
+  .float-icon:nth-child(2) {
+    right: -90px;
+    top: 10px;
+  }
+  
+  .float-icon:nth-child(3) {
+    left: -120px;
+    bottom: 10px;
+  }
+  
+  .float-icon:nth-child(4) {
+    right: -120px;
+    bottom: 0;
+  }
+  
+  .float-icon:nth-child(5) {
+    top: -90px;
+    left: 50%;
+  }
+  
+  .float-icon:nth-child(6) {
+    bottom: -90px;
+    left: 50%;
+  }
+  
+  @media (max-width:768px) {
+  
+    .shop-logo {
+      width: 110px;
+    }
+  
+    .shop-title {
+      font-size: 38px;
+    }
+  
+    .shop-tagline {
+      font-size: 15px;
+    }
+  
+    .logo-glow {
+      width: 180px;
+      height: 180px;
+    }
+  } */
+
+
+
+  /* ===============================
+   Splash Screen
+================================= */
+
+.splash-container {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 999999;
+}
+
+/* Background Glow */
+
+.bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: rgba(249, 115, 22, 0.12);
+    filter: blur(120px);
+    animation: glowPulse 3s infinite ease-in-out;
+}
+
+/* Floating Icons */
+
+.floating-icons {
+    position: absolute;
+    inset: 0;
+}
+
+.icon {
+    position: absolute;
+    color: #f97316;
+    opacity: .8;
+    animation: floatIcon 5s ease-in-out infinite;
+}
+
+.icon1 {
+    top: 15%;
+    left: 18%;
+    font-size: 38px;
+}
+
+.icon2 {
+    top: 22%;
+    right: 18%;
+    font-size: 34px;
+}
+
+.icon3 {
+    bottom: 22%;
+    left: 20%;
+    font-size: 34px;
+}
+
+.icon4 {
+    bottom: 18%;
+    right: 20%;
+    font-size: 36px;
+}
+
+.icon5 {
+    top: 12%;
+    left: 50%;
+    font-size: 40px;
+}
+
+.icon6 {
+    bottom: 12%;
+    left: 35%;
+    font-size: 34px;
+}
+
+.icon7 {
+    bottom: 10%;
+    right: 35%;
+    font-size: 34px;
+}
+
+/* Logo */
+
+.logo-wrapper {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.logo-glow {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: rgba(249,115,22,.22);
+    filter: blur(70px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo-circle {
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#f97316,#ea580c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 55px;
+    box-shadow: 0 0 35px rgba(249,115,22,.6);
+}
+
+.logo-text {
+    margin-top: 25px;
+    font-size: 55px;
+    color: white;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo-text span {
+    color: #f97316;
+}
+
+.logo-wrapper p {
+    margin-top: 12px;
+    color: #d4d4d4;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+/* Bottom Light */
+
+.bottom-light {
+    position: absolute;
+    bottom: -160px;
+    width: 700px;
+    height: 300px;
+    background: rgba(249,115,22,.18);
+    border-radius: 50%;
+    filter: blur(120px);
+}
+
+/* Animation */
+
+@keyframes glowPulse {
+
+    0%{
+        transform: scale(.9);
+        opacity: .4;
+    }
+
+    50%{
+        transform: scale(1.08);
+        opacity: 1;
+    }
+
+    100%{
+        transform: scale(.9);
+        opacity: .4;
+    }
+
+}
+
+@keyframes floatIcon {
+
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-18px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.logo-circle{
+    width:90px;
+    height:90px;
+    font-size:42px;
+}
+
+.logo-text{
+    font-size:38px;
+}
+
+.logo-wrapper p{
+    font-size:15px;
+}
+
+.bg-glow{
+    width:350px;
+    height:350px;
+}
+
+.icon{
+    font-size:24px !important;
+}
+
+.bottom-light{
+    width:350px;
+    height:180px;
+}
+
+}
+
+/* Large Desktop */
+
+@media(min-width:1600px){
+
+.logo-circle{
+    width:150px;
+    height:150px;
+    font-size:65px;
+}
+
+.logo-text{
+    font-size:70px;
+}
+
+.logo-wrapper p{
+    font-size:22px;
+}
+
+}

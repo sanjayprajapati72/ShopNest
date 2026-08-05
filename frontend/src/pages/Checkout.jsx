@@ -119,8 +119,9 @@ const Checkout = () => {
                 dispatch(clearBuyNowItem());
 
                 alert("Payment Successful");
+                navigate("/");
 
-                navigate("/ordersuccess");
+                // navigate("/ordersuccess");
             }
             else {
                 alert("Order Saving Failed");

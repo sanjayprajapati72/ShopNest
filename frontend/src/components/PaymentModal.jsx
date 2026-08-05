@@ -28,6 +28,12 @@ const PaymentModal = ({
     const [processing, setProcessing] = useState(false);
     const [showOtp, setShowOtp] = useState(false);
     const [selectedUpiApp, setSelectedUpiApp] = useState("");
+    const upiSuffix = {
+        "Google Pay": "@okaxis",
+        "PhonePe": "@ybl",
+        "Paytm": "@paytm",
+        "BHIM": "@upi",
+    };
     const [otp, setOtp] = useState("");
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [transactionId] = useState(
@@ -41,22 +47,26 @@ const PaymentModal = ({
     const handleFakePayment = async () => {
 
         // UPI Validation
-          
-            if (paymentMethod === "upi") {
 
-                // UPI App Select Validation
-                if (selectedUpiApp === "") {
-                    alert("Please select a UPI App");
-                    return;
-                }
-            
-                // UPI ID Validation
-                if (upiId.trim() === "") {
-                    alert("Please enter your UPI ID");
-                    return;
-                }
-            
+        if (paymentMethod === "upi") {
+
+            // UPI App Select Validation
+            if (selectedUpiApp === "") {
+                alert("Please select a UPI App");
+                return;
             }
+
+            // UPI ID Validation
+            if (upiId.trim() === "") {
+                alert("Please enter your UPI ID");
+                return;
+            }
+            const finalUpiId =
+                upiId + upiSuffix[selectedUpiApp];
+
+            console.log("UPI ID :", finalUpiId);
+
+        }
         // Card Validation
         if (paymentMethod === "card") {
 
@@ -116,6 +126,7 @@ const PaymentModal = ({
         setPaymentSuccess(true);
 
         setTimeout(() => {
+            setPaymentMethod("");
 
             onClose();
 
@@ -137,7 +148,7 @@ const PaymentModal = ({
             STEP 1
         =========================== */}
 
-                {paymentMethod === "" && (
+                {paymentMethod === "" && !paymentSuccess && (
                     <>
                         <h2>Select Payment Method</h2>
                         <p>Choose your preferred payment option</p>
@@ -171,7 +182,7 @@ const PaymentModal = ({
             UPI SCREEN
         =========================== */}
 
-                {paymentMethod === "upi" && !showOtp && (
+                {paymentMethod === "upi" && !showOtp && !paymentSuccess && (
                     <>
                         <button
                             className="back-btn"
@@ -214,11 +225,29 @@ const PaymentModal = ({
 
                         </div>
 
-                        <input
+                        {/* <input
                             type="text"
                             placeholder="Enter UPI ID"
                             value={upiId}
                             onChange={(e) => setUpiId(e.target.value)}
+                        /> */}
+                        <input
+                            type="text"
+                            placeholder={
+                                selectedUpiApp
+                                    ? `Enter UPI ID (${upiSuffix[selectedUpiApp]})`
+                                    : "Select UPI App First"
+                            }
+                            value={upiId}
+                            disabled={selectedUpiApp === ""}
+                            onChange={(e) => {
+                                let value = e.target.value;
+
+                                // agar user @ likhe to uske baad ka remove kar do
+                                value = value.split("@")[0];
+
+                                setUpiId(value);
+                            }}
                         />
 
                         <button
@@ -236,8 +265,10 @@ const PaymentModal = ({
                 {/* ===========================
             CARD SCREEN
         =========================== */}
+        
 
-                {paymentMethod === "card" && !showOtp && (
+                {/* {paymentMethod === "card" && !showOtp && ( */}
+                {paymentMethod === "card" && !showOtp && !paymentSuccess && (
                     <>
                         <button
                             className="back-btn"
@@ -301,6 +332,18 @@ const PaymentModal = ({
 
                             }
                         />
+                        {/* 👇 YEH CODE INPUT KE BAAD ADD KARO */}
+
+                        {selectedUpiApp && upiId && (
+                            <div className="upi-preview">
+                                <span>Your UPI ID</span>
+
+                                <h4>
+                                    {upiId}
+                                    {upiSuffix[selectedUpiApp]}
+                                </h4>
+                            </div>
+                        )}
 
                         <button
                             className="pay-btn-modal"

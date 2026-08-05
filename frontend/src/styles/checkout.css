@@ -466,3 +466,15 @@
   color:#fff;
   border:2px solid #fff;
 }
+
+.upi-preview{
+  margin:12px 0;
+  padding:12px;
+  border-radius:8px;
+  background:#18181b;
+  border:1px solid #f97316;
+  color:#22c55e;
+  text-align:center;
+  font-weight:600;
+  letter-spacing:.5px;
+}
